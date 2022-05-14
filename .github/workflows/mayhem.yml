@@ -7,8 +7,12 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  ARITHEMETIC_MAYHEMFILE: arithmetic.mayhemfile
-  CONSTRUCTORS_MAYHEMFILE: constructors.mayhemfile
+  BT_MAYHEMFILE: Mayehm/bt.mayhemfile
+  BTD_MAYHEMFILE: Mayehm/bt_differential.mayhemfile
+  LRSA_MAYHEMFILE: Mayehm/lsra.mayhemfile
+  LRSAD_MAYHEMFILE: Mayehm/lsra_differential.mayhemfile
+  PARSER_MAYHEMFILE: Mayehm/parser.mayhemfile
+  VALIDATOR_MAYHEMFILE: Mayehm/validator.mayhemfile
 
 jobs:
   build:
@@ -47,18 +51,46 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis for arithmetic
+      - name: Start analysis for bt
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.ARITHEMETIC_MAYHEMFILE }} --duration 300
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.BT_MAYHEMFILE }} --duration 300
           sarif-output: sarif
 
-      - name: Start analysis for constructors
+      - name: Start analysis for bt_differential
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.CONSTRUCTORS_MAYHEMFILE }} --duration 300
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.BTD_MAYHEMFILE }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis for lrsa
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.LRSA_MAYHEMFILE }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis for lrsa_differential
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.LRSAD_MAYHEMFILE }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis for parser
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.PARSER_MAYHEMFILE }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis for validator
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.VALIDATOR_MAYHEMFILE }} --duration 300
           sarif-output: sarif
 
       - name: Upload SARIF file(s)
