@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: regalloc
   BT_MAYHEMFILE: Mayehm/bt.mayhemfile
   BTD_MAYHEMFILE: Mayehm/bt_differential.mayhemfile
   LRSA_MAYHEMFILE: Mayehm/lsra.mayhemfile
