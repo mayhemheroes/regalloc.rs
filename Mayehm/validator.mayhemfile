@@ -1,0 +1,18 @@
+# Namespaced project name that the target belongs to
+project: regalloc.rs
+
+# Target name (should be unique within the project)
+target: validator
+
+# Base image to run the binary in.
+# image: ghcr.io/prateekvishnu/regalloc.rs:latest
+
+# List of commands used to test the target
+cmds:
+
+    # Command used to start the target, "@@" is the input file
+    # (when "@@" is omitted Mayhem defaults to stdin inputs)
+    - cmd: /validator
+
+ 
+
