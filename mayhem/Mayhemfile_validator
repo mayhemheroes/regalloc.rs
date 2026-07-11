@@ -1,0 +1,10 @@
+project: regalloc-rs
+target: validator
+
+cmds:
+    - cmd: /mayhem/validator
+      libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/validator/testsuite

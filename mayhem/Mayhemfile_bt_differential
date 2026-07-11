@@ -1,0 +1,10 @@
+project: regalloc-rs
+target: bt_differential
+
+cmds:
+    - cmd: /mayhem/bt_differential
+      libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/bt_differential/testsuite

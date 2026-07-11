@@ -1,0 +1,10 @@
+project: regalloc-rs
+target: lsra_differential
+
+cmds:
+    - cmd: /mayhem/lsra_differential
+      libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/lsra_differential/testsuite
